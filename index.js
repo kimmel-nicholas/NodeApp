@@ -1,14 +1,17 @@
+// import fetch from 'node-fetch';
+
 let express = require('express');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose')
 const ToDo = require('./models/todo.model')
+// const fetch = require('node-fetch')
+
 
 var app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded( {extended : true} ))
 
 //Connection to mongo
-
 const mongoDB = 'mongodb+srv://admin:admin@cluster0.6lrd2.mongodb.net/todo?retryWrites=true&w=majority';
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
@@ -17,6 +20,26 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:    '))
 
 let tasks = ['wake up', 'eat breakfast', 'asdf'];
 let completed = [];
+
+app.get('/zip', function(req, res){
+    res.render('zip');
+});
+
+app.post('/zip', function(req, res){
+    fetch('api.zippopotam.us/')
+        .then(res => res.json())
+        .then(data => console.log(res));{
+        // set the response to your global variable here
+        res.render('zip');
+    }
+    
+    
+});
+
+app.get('/zip', function(request, response){
+
+});
+
 
 app.get('/', function(request, response){
     ToDo.find(function(err, todo){
