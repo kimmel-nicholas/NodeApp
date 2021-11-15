@@ -1,12 +1,14 @@
-// import fetch from 'node-fetch';
+//import fetch from 'node-fetch';
 // for this import, I kept getting a SyntaxError saying: Cannot use import statement outside a module. I couldn't figure out where it wanted me to put it
+//the documentation states that node-fetch v3 is only for ESM modules but even when I tried to use v2 which says it should work, it didn't
+
 
 let express = require('express');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose')
 let path = require('path')
 const ToDo = require('./models/todo.model')
-// const fetch = require('node-fetch')
+//const fetch = require('node-fetch')
 
 var app = express();
 app.use(express.static('public'));
@@ -26,10 +28,12 @@ app.get('/zip', function(req, res){
 });
 
 app.post('/zip', function(req, res){
-    fetch('api.zippopotam.us/')
+    fetch('api.zippopotam.us/'+[[$country]]+'/'+[[$zipinput]])
         .then(res => res.json())
         .then(data => console.log(res));{
+
         // set the response to your global variable here
+
         res.render('zip');
     }
 });
