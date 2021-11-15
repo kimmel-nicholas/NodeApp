@@ -1,0 +1,14 @@
+h1{
+    color: darkred;
+}
+h2{
+    color:darkred;
+}
+body{
+    background-color: darkgrey;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 25em;
+}

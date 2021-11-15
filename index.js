@@ -1,13 +1,15 @@
 // import fetch from 'node-fetch';
+// for this import, I kept getting a SyntaxError saying: Cannot use import statement outside a module. I couldn't figure out where it wanted me to put it
 
 let express = require('express');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose')
+let path = require('path')
 const ToDo = require('./models/todo.model')
 // const fetch = require('node-fetch')
 
-
 var app = express();
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded( {extended : true} ))
 
@@ -18,8 +20,6 @@ mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:    '))
 
-let tasks = ['wake up', 'eat breakfast', 'asdf'];
-let completed = [];
 
 app.get('/zip', function(req, res){
     res.render('zip');
@@ -32,13 +32,11 @@ app.post('/zip', function(req, res){
         // set the response to your global variable here
         res.render('zip');
     }
-    
-    
 });
 
-app.get('/zip', function(request, response){
+// app.get('/zip', function(request, response){
 
-});
+// });
 
 
 app.get('/', function(request, response){
@@ -87,8 +85,6 @@ app.post('/removeToDo', function(req, res){
             })
     }else if (typeof remove === "object"){
         for( var i = 0; i<remove.length; i++){
-            // tasks.splice(tasks.indexOf(remove[i]), 1);
-            // completed.push(remove[i]);
             ToDo.updateOne({_id:remove[i]},{done:true}, function(err){
                 if(err){
                     console.log(err);
