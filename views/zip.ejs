@@ -8,15 +8,13 @@
     <body>
 
         <a href="/">FIRST PAGE</a>
-
-        <!-- There's still some work to be done here obviously -->
-
+        
         <h1>
             Select a country and enter a zip code
         </h1>
 
         <form action="/zip" method = "POST">
-            <label for="Country">Choose a country: </label>
+            <label for="country">Choose a country: </label>
             <select id="country" name="country">
                 <option value="AU">Australia</option>
                 <option value="BR">Brazil</option>
@@ -34,7 +32,7 @@
                 Enter zip code:
             </h2>
 
-            <input type = "number" min = "0" name = "zipinput" placeholder="add new item">
+            <input type = "number" min = "0" name = "zipinput" placeholder="input zip">
             
             <button formaction="/zip" type="submit">
                 Submit

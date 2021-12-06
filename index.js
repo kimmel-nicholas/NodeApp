@@ -8,9 +8,10 @@ let bodyParser = require('body-parser');
 let mongoose = require('mongoose')
 let path = require('path')
 const ToDo = require('./models/todo.model')
-//const fetch = require('node-fetch')
+const fetch = import('node-fetch')
 
-var app = express();
+
+let app = express();
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded( {extended : true} ))
@@ -28,7 +29,7 @@ app.get('/zip', function(req, res){
 });
 
 app.post('/zip', function(req, res){
-    fetch('api.zippopotam.us/'+[[$country]]+'/'+[[$zipinput]])
+    fetch('api.zippopotam.us/'+ [[country]] +'/'+ [[zipinput]])
         .then(res => res.json())
         .then(data => console.log(res));{
 
